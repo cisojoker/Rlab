@@ -26,3 +26,11 @@ barplot<-ggplot(barplot_data,aes(x=row,y=rowsums))+
   geom_bar(stat="identity",fill="green")+
   labs(title="sum of row in matrix b ",x="row",y="sum")
 print(barplot)
+# colsums
+colsums=colSums(matrixb)
+colnames<-paste("col",1:3)
+barplot_data2<-data.frame(col=colnames,sum=colsums)
+barplot2<-ggplot(barplot_data2,aes(x=col,y=sum))+
+  geom_bar(stat="identity",fill="green")+
+  labs(title="sum of col in matrix b ",x="col",y="sum")
+print(barplot2)
