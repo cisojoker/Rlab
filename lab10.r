@@ -1,22 +1,3 @@
-# Lab Exercise 10:
-# Exploring Data manipulation with dplyr package.
-# In this exercise, you will delve into data manipulation using the dplyr package in R.
-# You will perform operations that empower you to filter, select, mutate, group,
-# summarize, arrange, and join data frames. The dplyr package provides a streamlined
-# approach to enhance your ability to manipulate and transform data efficiently,
-# making it a vital tool for data analysis tasks.
-# ● Filter and Select: Apply the filter() function to extract rows that satisfy certain
-# conditions from a given data frame. Additionally, employ the select() function to
-# choose specific columns from the data frame.
-# ● Mutate: Utilize the mutate() function to create new variables or modify existing
-# ones within the data frame, thus enriching your dataset with calculated values.
-# ● Group and Summarize: Harness the power of the group_by() function to group
-# data based on specific variables. Then, employ the summarize() function to compute
-# summary statistics within each group.
-# ● Arrange: Leverage the arrange() function to sort the data frame based on the
-# values of selected variables, helping you gain insights from organized data.
-# ● Join: Explore the join() function, which allows you to merge multiple data frames
-# based on common
 library(dplyr)
 df <- data.frame(
 EMPID= c(101,102,103,104,105),
