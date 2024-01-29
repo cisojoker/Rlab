@@ -1,62 +1,51 @@
-inventoryitem<-character(0)
-inventoryqty<-numeric(0)
-
-# to add a new item with quantity
-additem<-function(item,qty){
-  inventoryitem<<-c(inventoryitem,item)
-  inventoryqty<<-c(inventoryqty,qty)
-  cat("item added to inventory.\n")
+invitem<-character(0)
+invqty<-numeric(0)
+add<-function(at,qt){
+  invitem<<-c(invitem,at)
+  invqty<<-c(invqty,qt)
+  cat("added successfully\n")
 }
-
-# update quantity of existing item
-updateqty<-function(item,newqty){
-  if(item %in% inventoryitem){
-    itemindex<-which(inventoryitem==item)
-    inventoryqty[itemindex]<<-newqty
-    cat("quantiity updated\n")
-  }else{
-    cat("item not found in inventory\n")
+update <- function(it, qt) {
+  if (it %in% invitem) {
+    ind <- which(it == invitem)
+    invqty[ind] <<- qt
+    cat("update successfully\n")
+  } else {
+    cat("item not found\n")
   }
 }
-# display
-display_inventory <- function() {
-  cat("Inventory Items and Quantities:\n")
-  for (i in 1:length(inventoryitem)) {
-    cat(sprintf("%s: %d\n", inventoryitem[i], inventoryqty[i]))
+remove <- function(it) {
+  if (it %in% invitem) {
+    ind <- which(it == invitem)
+    invitem <<- invitem[-ind]
+    invqty <<- invqty[-ind]
+    cat("removed item\n")
+  } else {
+    cat("item not found\n")
   }
 }
-# to remove item from inventory
-removeitem<-function(item){
-  if(item %in% inventoryitem){
-    itemindex<-which(inventoryitem==item)
-    inventoryitem<<-inventoryitem[inventoryitem!=item]
-    inventoryqty<<-inventoryqty[-c(itemindex)]
-    cat("item removed from inventory \n")
-  }else{
-    cat("item not found i inventory\n")
+display<-function(){
+  for(i in 1:length(invitem)){
+    cat("item: ",invitem[i],"quantity: ",invqty[i],"\n")
   }
 }
-# main program
-
 while(TRUE){
   cat("1.Add item \n2.update item \n3.display \n4.remove\n5.exit\n")
-  # choice<-as.integer(readline("enter choice"))
-  choice<-1
-  
-  if (choice == 1) {
-    item <- readline("Enter item name: ")
-    qty <- as.integer(readline("Enter quantity: "))
-    additem(item, qty)
-  } else if (choice == 2) {
-    item <- readline("Enter item name: ")
-    new_qty <- as.integer(readline("Enter new quantity: "))
-    updateqty(item, new_qty)
-  } else if (choice == 3) {
-    display_inventory()
-  } else if (choice == 4) {
-    item <- readline("Enter item name: ")
-    removeitem(item)
-  } else if (choice == 5) {
+  choice<-as.integer(readline("enter the choice"))
+  if(choice==1){
+     it<-readline("Enter the item")
+     at<-as.integer(readline("enter the quantity"))
+     add(it,at)
+  }else if(choice==2){
+     it<-readline("Enter the item")
+     at<-as.integer(readline("enter the new quantity"))
+     update(it,at)
+  }else if(choice==3){
+     display()
+  }else if(choice==4){
+     it<-readline("Enter the item")
+     remove(it)
+  }else if (choice == 5) {
     cat("Exiting the program. Goodbye!\n")
     break
   } else {
