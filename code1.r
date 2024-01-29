@@ -1,69 +1,45 @@
-allproduct<-list(
-list(name="apple",price=0.5),
-list(name="banana",price=0.6),
-list(name="chiku",price=0.59),
-list(name="grenapple",price=0.75),
-list(name="grapes",price=0.55)
+allproducts<-list(list(name="apple",price=30),
+list(name="banana",price=20),
+list(name="chiku",price=50),
+list(name="biscuit",price=60),
+list(name="bread",price=3.0),
+list(name="milk",price=40),
+list(name="cashew",price=100)
 )
-# intializee the list and print
-cat("name \t price\n")
-cat("========\n")
-for(i in allproduct){
-  cat(sprintf("%s \t %.2f\n",i$name,i$price))
+cat("<-------PRODUCTS----------->\n")
+for(i in allproducts){
+cat(sprintf("%s\t %.2f\n",i$name,i$price))
 }
-# empty shopping cart
-shoppingcart<-list()
-
-cartitems<-list(
-list(name="greenapple",quantity=5),
-list(name="banana",quantity=6),
-list(name="grapes",quantity=9)
+shoping<-list()
+cartitem<-list(list(name="chiku",quantity=3),
+list(name="milk",quantity=2),
+list(name="biscuit",quantity=5)
 )
-
-# add carditems to shoppingcart if available
-for(item in cartitems){
-  productname=item$name
-  qt=item$quantity
-  
+for(i in cartitem){
+  proname<-i$name
+  proquant<-i$quantity
   product<-NULL
-  for(p in allproduct){
-    if(p$name==productname){
-      product<-p
+  for(j in allproducts){
+    if(j$name==proname){
+      product<-j
       break
     }
   }
   if(!is.null(product)){
-    carditem<-list(name=product$name,price=product$price,quantity=qt)
-      shoppingcart<-append(shoppingcart,list(carditem))
-    cat("item is added\n")
-  }
-  else{
-    cat("product is not there\n")
+    newlist<-list(name=product$name,price=product$price,quantity=proquant)
+    shoping<-append(shoping,list(newlist))
   }
 }
-subtotal<-0;
-cat("Receipt\n")
-cat("++++++\n")
-for(item in shoppingcart){
-  item_subtotal<-item$price*item$quantity
-  subtotal<-subtotal+item_subtotal
-  cat(sprintf("%s (%d units)-price:$%.2f-subtotal:$%.2f\n",item$name,item$quantity,item$price,item_subtotal))
-  
+cat("item you are buying\n")
+for (i in shoping){
+  cat(sprintf("%s\t %.2f\t %.2f\n",i$name,i$price,i$quantity))
 }
-taxrate<-0.08
-tax_amount<-taxrate*subtotal
-totalcost<-subtotal+tax_amount
-
-cat(sprintf("subtotal:$%.2f\n",subtotal))
-cat(sprintf("tax amount(8%%): $%.2f\n",tax_amount))
-cat(sprintf("bill: $%.2f\n",totalcost))
-
-
-
-
-
-
-
-
-
-
+cat("item\t nettotal\n")
+total<-0
+for(i in shoping){
+  total<-total+(i$price*i$quantity)
+  cat(sprintf("%s\t %.2f\n",i$name,i$price*i$quantity))
+}
+cat(sprintf("total before tax is: %.2f\n",total))
+tax<-total+(total*0.08)
+cat(sprintf("total after tax(8percent) is: %.2f\n",tax))
