@@ -1,42 +1,44 @@
-nostudent<-6
-nocourses<-5
-
-studentnames<-c("KING","Sohan","Mithali","Rahul","Jahal A R", "Suresh")
-
-coursemarks<-matrix(c(
-  85, 92, 78, 88, 95,
-  75, 80, 85, 70, 60,
-  100,78,56,34,56,
-  78,45,67,89,90,
-  89,80,67,78,90,
-  80, 75, 70, 80, 90
-),nrow=nostudent,byrow=TRUE)
-print(coursemarks)
-
-studentrecords<-list()
-for(si in 1:nocourses){
-  studentname=studentnames[si]
-  totalmarks<-sum(coursemarks[si,])
-  averagemarks<-totalmarks/nocourses
-  
-  grade<-ifelse(averagemarks>=90,"A",
-  ifelse(averagemarks>=80,"B",
-  ifelse(averagemarks>=70,"c",
-  ifelse(averagemarks>=60,"d","e"))))
-  
-  studentrecord<-list(name=studentname,marks=coursemarks[si,],total=totalmarks,average=averagemarks,grade=grade)
-  studentrecords<-append(studentrecords,list(studentrecord))
-}
-
-# display the result
-cat("\nStudent Grade Report:\n") 
-for (record in studentrecords)
+ns<-10;
+nc<-5
+snames=c("a","b","c","d","e","f","G","h","i","j")
+cmarks<-matrix(c(10,20,30,40,50,
+                 60,70,80,90,10,
+                 20,30,40,50,60,
+                 70,80,90,10,20,
+                 30,40,50,60,70,
+                 20,30,40,50,60,
+                 80,90,10,20,30,
+                 20,30,40,50,60,
+                 20,30,40,50,60,
+                 30,40,50,60,70
+                 ),nrow=ns,byrow="TRUE")
+  print(cmarks)
+  strecord<-list()
+  for(i in 1:ns){
+       stname=snames[i];
+       total<-sum(cmarks[i,])
+       avg=total/nc
+       grade<-ifelse(avg>=90,'A',
+       ifelse(avg>=80,'B',
+       ifelse(avg>=70,'C',
+       ifelse(avg>=60,'D',
+       ifelse(avg>=50,'E',
+       ifelse(avg<60,'f'))))))
+       student<-list(name=stname,marks=cmarks[i,],total=total,average=avg,grade=grade)
+       strecord<-append(strecord,list(student))
+  }
+cat("student information\n")
+for(i in strecord)
 {
-  
-  cat("\nName:", record$name, "\n") 
-  cat("Marks:", record$marks, "\n") 
-  cat("Total Marks:", record$total, "\n") 
-  cat("Average Marks:", record$average, "\n") 
-  cat("Grade:", record$grade, "\n")
-  
+    # print(i$name)
+    # print(i$marks)
+    # print(i$total)
+    # print(i$average)
+    # print(i$grade)
+    cat("\n")
+    cat("name:",i$name,"\n")
+    cat("marks:",i$marks,"\n")
+    cat("total:",i$total,"\n")
+    cat("average:",i$average,"\n")
+    cat("grade:",i$grade,"\n")
 }
